@@ -1,0 +1,22 @@
+﻿<Window x:Class="Photato.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Photato"
+        mc:Ignorable="d" Padding="0" Height="400" Width="500" WindowStyle="None" ResizeMode="NoResize">
+    <Grid DragEnter="FileViewer_DragEnter" DragDrop.Drop="FileViewer_DragDrop" AllowDrop="true">
+        <Grid Margin="0,0,0,364" Background="White">
+            <Border BorderBrush="#cccedb" BorderThickness="0,0,0,1"/>
+            <Button x:Name="CloseButton" Style="{StaticResource CloseButton}" Content="&#xE106;" Click="CloseButton_Click" Margin="457,3,3,3"/>
+            <Button x:Name="HideButton" Style="{StaticResource HideButton}" Content="ㅡ" Click="HideButton_Click" Margin="417,3,43,3"/>
+            <Label Content="PHOTATO" Margin="0,0,430,0" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="36" Width="70"/>
+        </Grid>
+        <Button x:Name="LanguageButton" Style="{StaticResource DefaultButton}" Content="EN" Click="LanguageButton_Click"  Width="60" Height="60" Margin="420,320,20,20" FontSize="20" Tag="0"/>
+        <Label x:Name="KumaComment" Content="Drag &amp; drop the Pictures folder" Margin="20,56,20,280" FontFamily="Segoe Print" FontSize="26"/>
+        <Border BorderBrush="#cccedb" BorderThickness="1"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="resources/darg.png" Stretch="None" AlignmentX="Left" AlignmentY="Bottom"/>
+        </Grid.Background>
+    </Grid>
+</Window>
