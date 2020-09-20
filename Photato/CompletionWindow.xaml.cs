@@ -14,13 +14,13 @@ namespace Photato
             switch (Language)
             {
                 case 0:
-                    commentLabel.Content = "Conversion completed successfully.";
+                    commentLabel.Content = "Done!";
                     break;
                 case 1:
-                    commentLabel.Content = "変換は正常に完了しました。";
+                    commentLabel.Content = "整理が終わりました！";
                     break;
                 case 2:
-                    commentLabel.Content = "변환을 완료 했습니다.";
+                    commentLabel.Content = "차곡 차곡 정리가 끝났습니다!";
                     break;
             }
         }

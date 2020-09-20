@@ -27,7 +27,7 @@ namespace Photato
                 case 1:
                     LanguageButton.Tag = "1";
                     LanguageButton.Content = "JP";
-                    KumaComment.Content = "イメージフォルダーをドラッグ&ドロップ";
+                    KumaComment.Content = "フォルダをDrag  &  Dropしてください。";
                     KumaComment.FontFamily = new FontFamily("UD Digi Kyokasho N-B");
                     KumaComment.FontSize = 24;
                     break;
@@ -67,7 +67,7 @@ namespace Photato
                     LanguageButton.Tag = "1";
                     Properties.Settings.Default.Language = 1;
                     LanguageButton.Content = "JP";
-                    KumaComment.Content = "イメージフォルダーをドラッグ&ドロップ";
+                    KumaComment.Content = "フォルダをDrag  &  Dropしてください。";
                     KumaComment.FontFamily = new FontFamily("UD Digi Kyokasho N-B");
                     KumaComment.FontSize = 24;
                     break;
@@ -101,47 +101,29 @@ namespace Photato
 
         private void FileViewer_DragDrop(Object sender, DragEventArgs e)
         {
-            bool Converting;
-            string newName, Location;
+            bool hasConvert;
+            string fileName, Location;
             const string Pattern = @"^A\d$|^B\d{2}$|^C\d{3}$|^D\d{4}$|^E\d{5}$|^F\d{6}$|^G\d{7}$";
-            int Count = 1;
+            int count = 1;
             var dragLocation = (string[])e.Data.GetData(DataFormats.FileDrop);
             Location = string.Join(string.Empty, dragLocation);
 
             DirectoryInfo directoryInfo = new DirectoryInfo(Location);
-
             foreach (FileInfo File in directoryInfo.GetFiles())
             {
                 if ((File.Extension.ToLower().CompareTo(".png") == 0) || (File.Extension.ToLower().CompareTo(".jpg") == 0)
-                    || (File.Extension.ToLower().CompareTo(".gif") == 0) || (File.Extension.ToLower().CompareTo(".jpeg") == 0)
-                    || (File.Extension.ToLower().CompareTo(".bmp") == 0) || (File.Extension.ToLower().CompareTo(".raw") == 0))
+                    || (File.Extension.ToLower().CompareTo(".gif") == 0) || (File.Extension.ToLower().CompareTo(".jpeg") == 0))
                 {
-                    foreach (Match match in Regex.Matches(System.IO.Path.GetFileNameWithoutExtension(File.Name), Pattern))
-                    {
-                        newName = SetAlphabet(Location, Count) + Count + File.Extension;
-                        int ExtractedNumber = Convert.ToInt32(Regex.Replace(File.Name, @"\D", ""));
-                        if (ExtractedNumber != Count)
-                            System.IO.File.Move(File.FullName, newName);
-                        Count++;
-                    }
-                }
-            }
-            foreach (FileInfo File in directoryInfo.GetFiles())
-            {
-                if ((File.Extension.ToLower().CompareTo(".png") == 0) || (File.Extension.ToLower().CompareTo(".jpg") == 0)
-                    || (File.Extension.ToLower().CompareTo(".gif") == 0) || (File.Extension.ToLower().CompareTo(".jpeg") == 0)
-                    || (File.Extension.ToLower().CompareTo(".bmp") == 0) || (File.Extension.ToLower().CompareTo(".raw") == 0))
-                {
-                    Converting = false;
+                    hasConvert = false;
 
                     foreach (Match match in Regex.Matches(System.IO.Path.GetFileNameWithoutExtension(File.Name), Pattern))
-                        Converting = true;
+                        hasConvert = true;
 
-                    if (Converting == false)
+                    if (hasConvert == false)
                     {
-                        newName = SetAlphabet(Location, Count) + Count + File.Extension;
-                        System.IO.File.Move(File.FullName, newName);
-                        Count++;
+                        fileName = SetAlphabet(Location, count) + count + File.Extension;
+                        System.IO.File.Move(File.FullName, fileName);
+                        count++;
                     }
                 }
             }
@@ -150,24 +132,24 @@ namespace Photato
             completionWindow.Show();
         }
 
-        private static string SetAlphabet(string Location, int Count)
+        private static string SetAlphabet(string Location, int count)
         {
-            string newName;
-            if (Count < 10)
-                newName = Location + "\\A";
-            else if (Count >= 10 && Count < 100)
-                newName = Location + "\\B";
-            else if (Count >= 100 && Count < 1000)
-                newName = Location + "\\C";
-            else if (Count >= 1000 && Count < 10000)
-                newName = Location + "\\D";
-            else if (Count >= 10000 && Count < 100000)
-                newName = Location + "\\E";
-            else if (Count >= 100000 && Count < 1000000)
-                newName = Location + "\\F";
+            string fileName;
+            if (count < 10)
+                fileName = Location + "\\A";
+            else if (count >= 10 && count < 100)
+                fileName = Location + "\\B";
+            else if (count >= 100 && count < 1000)
+                fileName = Location + "\\C";
+            else if (count >= 1000 && count < 10000)
+                fileName = Location + "\\D";
+            else if (count >= 10000 && count < 100000)
+                fileName = Location + "\\E";
+            else if (count >= 100000 && count < 1000000)
+                fileName = Location + "\\F";
             else
-                newName = Location + "\\G";
-            return newName;
+                fileName = Location + "\\G";
+            return fileName;
         }
     }
 }
