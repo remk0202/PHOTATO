@@ -8,8 +8,11 @@ Align the image file by renaming it with the combination 'Alphabet' + 'Number'.
 ## PHOTATO App UI
 ![PHOTATO Program](images/PHOTATO.png)
 
+#### 20.09.20 update
+Added the console version and modified code.
+
 ## License
 
-Copyright 2020. REMK all right reserved
+Copyright 2020. remk0202 all right reserved
 
 ##### ⚠ This is the Toy Project. Use safer and better programs.
