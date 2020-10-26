@@ -1,3 +1,9 @@
 .vs
 bin/
 obj/
+image_sorter/bin
+image_sorter/obj
+image_sorter\image_sorter
+image_sorter\image_sorter.user
+
+
