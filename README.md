@@ -1,5 +1,5 @@
 # Image sorter
-kaomoji (japanese emoji) picker program.
+image file sorter program
 
 ## Screenshot
 ![Image sorter](images/Image_sorter.png)
